@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per Te, Amore Mio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap">
+    <style>
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-mont {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .photo-frame {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .photo-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .heart {
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+        .polaroid {
+            background: white;
+            padding: 1rem;
+            padding-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transform: rotate(var(--rotation));
+        }
+        .note {
+            background: #fffdf0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: rotate(var(--rotation));
+        }
+        .bg-blue-pink-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #93c5fd 35%, #fbcfe8 65%, #ec4899 100%);
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+        .section {
+            scroll-margin-top: 80px;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #93c5fd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+        }
+        .timeline-content.left {
+            left: 0;
+        }
+        .timeline-content.right {
+            left: 55%;
+        }
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ec4899;
+            top: 15px;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-pink-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white bg-opacity-90 shadow-md z-50 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="font-dancing text-2xl text-blue-600">Il Nostro Amore</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link font-mont text-blue-800 hover:text-pink-500">Home</a>
+                    <a href="#storia" class="nav-link font-mont text-blue-800 hover:text-pink-500">La Nostra Storia</a>
+                    <a href="#momenti" class="nav-link font-mont text-blue-800 hover:text-pink-500">Momenti Speciali</a>
+                    <a href="#dediche" class="nav-link font-mont text-blue-800 hover:text-pink-500">Dediche</a>
+                    <a href="#futuro" class="nav-link font-mont text-blue-800 hover:text-pink-500">Il Nostro Futuro</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-blue-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white px-4 py-2">
+            <a href="#home" class="block py-2 font-mont text-blue-800 hover:text-pink-500">Home</a>
+            <a href="#storia" class="block py-2 font-mont text-blue-800 hover:text-pink-500">La Nostra Storia</a>
+            <a href="#momenti" class="block py-2 font-mont text-blue-800 hover:text-pink-500">Momenti Speciali</a>
+            <a href="#dediche" class="block py-2 font-mont text-blue-800 hover:text-pink-500">Dediche</a>
+            <a href="#futuro" class="block py-2 font-mont text-blue-800 hover:text-pink-500">Il Nostro Futuro</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 pt-24 pb-8">
+        <!-- Hero Section -->
+        <section id="home" class="section min-h-[80vh] flex flex-col items-center justify-center text-center mb-16">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="font-dancing text-5xl md:text-7xl bg-clip-text text-transparent bg-blue-pink-gradient mb-6">Per Te, Amore Mio</h1>
+                <p class="font-mont text-lg text-gray-700 mb-8">Un viaggio attraverso i nostri momenti più belli</p>
+                
+                <div class="bg-white bg-opacity-80 rounded-xl p-8 shadow-lg mb-8">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div class="text-center">
+                            <p class="font-mont text-gray-600 mb-2">Siamo insieme da:</p>
+                            <div class="bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-lg p-4">
+                                <div id="counterDays" class="font-dancing text-4xl">0</div>
+                                <div class="font-mont text-sm">giorni</div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="font-mont text-gray-600 mb-2">Che equivalgono a:</p>
+                            <div class="flex flex-wrap justify-center gap-3">
+                                <div class="bg-blue-100 rounded-lg p-3 w-24">
+                                    <div id="counterMonths" class="font-dancing text-2xl text-blue-600">0</div>
+                                    <div class="font-mont text-xs text-gray-600">mesi</div>
+                                </div>
+                                <div class="bg-pink-100 rounded-lg p-3 w-24">
+                                    <div id="counterWeeks" class="font-dancing text-2xl text-pink-600">0</div>
+                                    <div class="font-mont text-xs text-gray-600">settimane</div>
+                                </div>
+                                <div class="bg-blue-100 rounded-lg p-3 w-24">
+                                    <div id="counterHours" class="font-dancing text-2xl text-blue-600">0</div>
+                                    <div class="font-mont text-xs text-gray-600">ore</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-dancing text-xl text-center mt-6 text-pink-600">Dal 5 Aprile 2024</p>
+                </div>
+                
+                <div class="flex justify-center">
+                    <a href="#storia" class="bg-blue-600 hover:bg-blue-700 text-white font-mont py-3 px-8 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
+                        Inizia il viaggio
+                        <svg class="w-5 h-5 ml-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- La Nostra Storia Section -->
+        <section id="storia" class="section mb-20">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="font-dancing text-4xl text-center bg-clip-text text-transparent bg-blue-pink-gradient mb-12">La Nostra Storia</h2>
+                
+                <div class="relative py-8">
+                    <!-- Timeline -->
+                    <div class="timeline-item mb-16">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content left">
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <h3 class="font-dancing text-2xl text-blue-600 mb-3">Il primo incontro</h3>
+                                <p class="font-mont text-gray-700">
+                                    Qui puoi descrivere come vi siete conosciuti. Aggiungi dettagli su dove vi siete incontrati, 
+                                    cosa hai pensato la prima volta che l'hai vista, e come ti sei sentito.
+                                </p>
+                                <div class="mt-4 bg-gray-200 h-40 flex items-center justify-center rounded">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-16">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content right">
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <h3 class="font-dancing text-2xl text-pink-600 mb-3">Il primo appuntamento</h3>
+                                <p class="font-mont text-gray-700">
+                                    Racconta del vostro primo appuntamento. Dove siete andati? Di cosa avete parlato? 
+                                    Quali sono stati i momenti più memorabili di quella giornata?
+                                </p>
+                                <div class="mt-4 bg-gray-200 h-40 flex items-center justify-center rounded">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-16">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content left">
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <h3 class="font-dancing text-2xl text-blue-600 mb-3">Il nostro primo bacio</h3>
+                                <p class="font-mont text-gray-700">
+                                    Descrivi il momento del vostro primo bacio. Dove eravate? Come è successo? 
+                                    Quali emozioni hai provato in quel momento speciale?
+                                </p>
+                                <div class="mt-4 bg-gray-200 h-40 flex items-center justify-center rounded">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content right">
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <h3 class="font-dancing text-2xl text-pink-600 mb-3">L'inizio ufficiale</h3>
+                                <p class="font-mont text-gray-700">
+                                    Racconta di come avete deciso di stare insieme ufficialmente. Come è avvenuta la proposta? 
+                                    Quali sono state le vostre promesse l'uno all'altra?
+                                </p>
+                                <div class="mt-4 bg-gray-200 h-40 flex items-center justify-center rounded">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button id="addTimelineBtn" class="bg-gradient-to-r from-blue-500 to-pink-500 text-white font-mont py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Aggiungi un momento alla nostra storia
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Momenti Speciali Section -->
+        <section id="momenti" class="section mb-20">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-dancing text-4xl text-center bg-clip-text text-transparent bg-blue-pink-gradient mb-12">I Nostri Momenti Speciali</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Photo 1 -->
+                    <div class="polaroid photo-frame" style="--rotation: -2deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">La nostra prima cena romantica</p>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="polaroid photo-frame" style="--rotation: 1deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">La nostra prima vacanza insieme</p>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div class="polaroid photo-frame" style="--rotation: -1deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">Il nostro primo mese insieme</p>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="polaroid photo-frame" style="--rotation: 2deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">La nostra prima festa insieme</p>
+                    </div>
+
+                    <!-- Photo 5 -->
+                    <div class="polaroid photo-frame" style="--rotation: -2deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">Il nostro primo regalo</p>
+                    </div>
+
+                    <!-- Photo 6 -->
+                    <div class="polaroid photo-frame" style="--rotation: 1deg;">
+                        <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="font-dancing text-center mt-3 text-gray-700">Un momento speciale insieme</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button id="addPhotoBtn" class="bg-gradient-to-r from-blue-500 to-pink-500 text-white font-mont py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Aggiungi un momento speciale
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dediche Section -->
+        <section id="dediche" class="section mb-20">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="font-dancing text-4xl text-center bg-clip-text text-transparent bg-blue-pink-gradient mb-12">Le Mie Dediche Per Te</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Note 1 -->
+                    <div class="note p-6 rounded-md" style="--rotation: -1deg;">
+                        <p class="font-dancing text-xl mb-2 text-blue-800">Cara Amore Mio,</p>
+                        <p class="font-mont text-gray-700">
+                            Ogni giorno con te è un dono prezioso. Mi fai sorridere quando sono triste, 
+                            mi sostieni quando sono debole, e mi ami quando ne ho più bisogno. 
+                            Sei la luce che illumina il mio cammino e la forza che mi spinge a essere migliore.
+                        </p>
+                        <p class="font-dancing text-right mt-4 text-pink-600">Con tutto il mio amore</p>
+                    </div>
+
+                    <!-- Note 2 -->
+                    <div class="note p-6 rounded-md" style="--rotation: 1deg;">
+                        <p class="font-dancing text-xl mb-2 text-blue-800">Mia dolce metà,</p>
+                        <p class="font-mont text-gray-700">
+                            Ricordi quella volta che abbiamo guardato le stelle insieme? 
+                            Mi hai fatto notare quanto fossero belle, ma io non potevo fare a meno di guardare te. 
+                            Sei la mia stella più luminosa, quella che seguirei ovunque.
+                        </p>
+                        <p class="font-dancing text-right mt-4 text-pink-600">Per sempre tuo</p>
+                    </div>
+
+                    <!-- Note 3 -->
+                    <div class="note p-6 rounded-md" style="--rotation: -2deg;">
+                        <p class="font-dancing text-xl mb-2 text-blue-800">Amore della mia vita,</p>
+                        <p class="font-mont text-gray-700">
+                            Non avrei mai immaginato che esistesse un amore così profondo prima di incontrarti. 
+                            Hai cambiato il mio mondo in meglio, riempiendolo di risate, avventure e momenti indimenticabili. 
+                            Grazie per essere la persona straordinaria che sei.
+                        </p>
+                        <p class="font-dancing text-right mt-4 text-pink-600">Ti amo infinitamente</p>
+                    </div>
+
+                    <!-- Note 4 -->
+                    <div class="note p-6 rounded-md" style="--rotation: 2deg;">
+                        <p class="font-dancing text-xl mb-2 text-blue-800">Tesoro mio,</p>
+                        <p class="font-mont text-gray-700">
+                            Ogni momento con te è speciale, anche quelli più semplici. 
+                            Adoro quando guardiamo film insieme, quando cuciniamo e facciamo passeggiate. 
+                            È la tua presenza che rende tutto magico e indimenticabile.
+                        </p>
+                        <p class="font-dancing text-right mt-4 text-pink-600">Con amore eterno</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button id="addNoteBtn" class="bg-gradient-to-r from-blue-500 to-pink-500 text-white font-mont py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Aggiungi una dedica
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Il Nostro Futuro Section -->
+        <section id="futuro" class="section mb-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="font-dancing text-4xl text-center bg-clip-text text-transparent bg-blue-pink-gradient mb-12">Il Nostro Futuro</h2>
+                
+                <div class="bg-white bg-opacity-90 rounded-xl p-8 shadow-lg">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="w-full md:w-1/2">
+                            <h3 class="font-dancing text-3xl text-blue-600 mb-4">I Nostri Sogni</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-pink-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Viaggiare insieme in posti meravigliosi</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-pink-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Costruire una casa piena d'amore</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-pink-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Creare ricordi indimenticabili insieme</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-pink-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Sostenerci a vicenda nei nostri obiettivi</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <button id="addDreamBtn" class="bg-blue-100 hover:bg-blue-200 text-blue-800 font-mont py-2 px-4 rounded-md transition">
+                                    Aggiungi un sogno
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full md:w-1/2">
+                            <h3 class="font-dancing text-3xl text-pink-600 mb-4">Le Nostre Promesse</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Amarti ogni giorno di più</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Essere sempre sincero e onesto</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Esserci sempre nei momenti difficili</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="font-mont text-gray-700">Celebrare insieme ogni successo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <button id="addPromiseBtn" class="bg-pink-100 hover:bg-pink-200 text-pink-800 font-mont py-2 px-4 rounded-md transition">
+                                    Aggiungi una promessa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10 text-center">
+                        <p class="font-dancing text-2xl text-transparent bg-clip-text bg-blue-pink-gradient">
+                            Il meglio deve ancora venire...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8">
+            <div class="flex justify-center mb-4">
+                <svg class="heart w-8 h-8 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <p class="font-dancing text-2xl text-blue-600 mb-2">Ti amo infinitamente</p>
+            <p class="font-mont text-sm text-gray-600">Creato con amore per te</p>
+        </footer>
+    </div>
+
+    <!-- Modal for adding photos -->
+    <div id="photoModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 class="font-dancing text-2xl text-blue-600 mb-4">Aggiungi un momento speciale</h3>
+            <div class="mb-4">
+                <label class="block font-mont text-gray-700 mb-2">Descrizione del momento:</label>
+                <input type="text" id="photoDescription" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Es: La nostra cena romantica">
+            </div>
+            <div class="mb-6">
+                <p class="font-mont text-sm text-gray-500 mb-2">Qui potrai aggiungere la tua foto</p>
+                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md p-8 text-center">
+                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <p class="font-mont text-gray-500">Clicca per selezionare un'immagine</p>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelPhotoBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Annulla</button>
+                <button id="savePhotoBtn" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-md hover:opacity-90 transition">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding notes -->
+    <div id="noteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 class="font-dancing text-2xl text-pink-600 mb-4">Aggiungi una dedica</h3>
+            <div class="mb-4">
+                <label class="block font-mont text-gray-700 mb-2">Intestazione:</label>
+                <input type="text" id="noteHeader" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Es: Amore mio,">
+            </div>
+            <div class="mb-4">
+                <label class="block font-mont text-gray-700 mb-2">Il tuo messaggio:</label>
+                <textarea id="noteMessage" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 h-32" placeholder="Scrivi qui la tua dedica..."></textarea>
+            </div>
+            <div class="mb-6">
+                <label class="block font-mont text-gray-700 mb-2">Firma:</label>
+                <input type="text" id="noteSignature" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Es: Con amore, [Il tuo nome]">
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelNoteBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Annulla</button>
+                <button id="saveNoteBtn" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-md hover:opacity-90 transition">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding timeline events -->
+    <div id="timelineModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 class="font-dancing text-2xl text-blue-600 mb-4">Aggiungi un momento alla vostra storia</h3>
+            <div class="mb-4">
+                <label class="block font-mont text-gray-700 mb-2">Titolo del momento:</label>
+                <input type="text" id="timelineTitle" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Es: Il nostro primo viaggio">
+            </div>
+            <div class="mb-4">
+                <label class="block font-mont text-gray-700 mb-2">Descrizione:</label>
+                <textarea id="timelineDescription" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-32" placeholder="Racconta questo momento speciale..."></textarea>
+            </div>
+            <div class="mb-6">
+                <p class="font-mont text-sm text-gray-500 mb-2">Qui potrai aggiungere una foto</p>
+                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-md p-8 text-center">
+                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <p class="font-mont text-gray-500">Clicca per selezionare un'immagine</p>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelTimelineBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Annulla</button>
+                <button id="saveTimelineBtn" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-pink-500 text-white rounded-md hover:opacity-90 transition">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding dreams -->
+    <div id="dreamModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 class="font-dancing text-2xl text-blue-600 mb-4">Aggiungi un sogno</h3>
+            <div class="mb-6">
+                <label class="block font-mont text-gray-700 mb-2">Descrizione del sogno:</label>
+                <input type="text" id="dreamDescription" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Es: Visitare Parigi insieme">
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelDreamBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Annulla</button>
+                <button id="saveDreamBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding promises -->
+    <div id="promiseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 class="font-dancing text-2xl text-pink-600 mb-4">Aggiungi una promessa</h3>
+            <div class="mb-6">
+                <label class="block font-mont text-gray-700 mb-2">Descrizione della promessa:</label>
+                <input type="text" id="promiseDescription" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Es: Farti sorridere ogni giorno">
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancelPromiseBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Annulla</button>
+                <button id="savePromiseBtn" class="px-4 py-2 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Counter functionality
+        function updateCounter() {
+            const startDate = new Date('2024-04-05');
+            const today = new Date();
+            
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const diffMonths = Math.floor(diffDays / 30);
+            const diffWeeks = Math.floor(diffDays / 7);
+            const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+            
+            document.getElementById('counterDays').textContent = diffDays;
+            document.getElementById('counterMonths').textContent = diffMonths;
+            document.getElementById('counterWeeks').textContent = diffWeeks;
+            document.getElementById('counterHours').textContent = diffHours;
+        }
+
+        // Update counter on page load
+        updateCounter();
+        
+        // Update counter every hour
+        setInterval(updateCounter, 3600000);
+
+        // Photo functionality
+        const photoGallery = document.querySelector('#momenti .grid');
+        const addPhotoBtn = document.getElementById('addPhotoBtn');
+        const photoModal = document.getElementById('photoModal');
+        const cancelPhotoBtn = document.getElementById('cancelPhotoBtn');
+        const savePhotoBtn = document.getElementById('savePhotoBtn');
+        const photoDescription = document.getElementById('photoDescription');
+
+        addPhotoBtn.addEventListener('click', () => {
+            photoModal.classList.remove('hidden');
+        });
+
+        cancelPhotoBtn.addEventListener('click', () => {
+            photoModal.classList.add('hidden');
+            photoDescription.value = '';
+        });
+
+        savePhotoBtn.addEventListener('click', () => {
+            if (photoDescription.value.trim() !== '') {
+                const rotation = Math.floor(Math.random() * 5) - 2;
+                const newPhoto = document.createElement('div');
+                newPhoto.className = 'polaroid photo-frame';
+                newPhoto.style.setProperty('--rotation', `${rotation}deg`);
+                newPhoto.innerHTML = `
+                    <div class="bg-gray-200 h-64 flex items-center justify-center rounded">
+                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <p class="font-dancing text-center mt-3 text-gray-700">${photoDescription.value}</p>
+                `;
+                photoGallery.appendChild(newPhoto);
+                photoModal.classList.add('hidden');
+                photoDescription.value = '';
+            }
+        });
+
+        // Note functionality
+        const notesContainer = document.querySelector('#dediche .grid');
+        const addNoteBtn = document.getElementById('addNoteBtn');
+        const noteModal = document.getElementById('noteModal');
+        const cancelNoteBtn = document.getElementById('cancelNoteBtn');
+        const saveNoteBtn = document.getElementById('saveNoteBtn');
+        const noteHeader = document.getElementById('noteHeader');
+        const noteMessage = document.getElementById('noteMessage');
+        const noteSignature = document.getElementById('noteSignature');
+
+        addNoteBtn.addEventListener('click', () => {
+            noteModal.classList.remove('hidden');
+        });
+
+        cancelNoteBtn.addEventListener('click', () => {
+            noteModal.classList.add('hidden');
+            noteHeader.value = '';
+            noteMessage.value = '';
+            noteSignature.value = '';
+        });
+
+        saveNoteBtn.addEventListener('click', () => {
+            if (noteMessage.value.trim() !== '') {
+                const rotation = Math.floor(Math.random() * 3) - 1;
+                const newNote = document.createElement('div');
+                newNote.className = 'note p-6 rounded-md';
+                newNote.style.setProperty('--rotation', `${rotation}deg`);
+                newNote.innerHTML = `
+                    <p class="font-dancing text-xl mb-2 text-blue-800">${noteHeader.value || 'Amore mio,'}</p>
+                    <p class="font-mont text-gray-700">${noteMessage.value}</p>
+                    <p class="font-dancing text-right mt-4 text-pink-600">${noteSignature.value || 'Con amore'}</p>
+                `;
+                notesContainer.appendChild(newNote);
+                noteModal.classList.add('hidden');
+                noteHeader.value = '';
+                noteMessage.value = '';
+                noteSignature.value = '';
+            }
+        });
+
+        // Timeline functionality
+        const timelineContainer = document.querySelector('#storia .relative');
+        const addTimelineBtn = document.getElementById('addTimelineBtn');
+        const timelineModal = document.getElementById('timelineModal');
+        const cancelTimelineBtn = document.getElementById('cancelTimelineBtn');
+        const saveTimelineBtn = document.getElementById('saveTimelineBtn');
+        const timelineTitle = document.getElementById('timelineTitle');
+        const timelineDescription = document.getElementById('timelineDescription');
+
+        addTimelineBtn.addEventListener('click', () => {
+            timelineModal.classList.remove('hidden');
+        });
+
+        cancelTimelineBtn.addEventListener('click', () => {
+            timelineModal.classList.add('hidden');
+            timelineTitle.value = '';
+            timelineDescription.value = '';
+        });
+
+        saveTimelineBtn.addEventListener('click', () => {
+            if (timelineTitle.value.trim() !== '' && timelineDescription.value.trim() !== '') {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                const isLeft = timelineItems.length % 2 === 0;
+                
+                const newTimelineItem = document.createElement('div');
+                newTimelineItem.className = 'timeline-item mb-16';
+                newTimelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content ${isLeft ? 'left' : 'right'}">
+                        <div class="bg-white rounded-lg p-6 shadow-md">
+                            <h3 class="font-dancing text-2xl text-${isLeft ? 'blue' : 'pink'}-600 mb-3">${timelineTitle.value}</h3>
+                            <p class="font-mont text-gray-700">${timelineDescription.value}</p>
+                            <div class="mt-4 bg-gray-200 h-40 flex items-center justify-center rounded">
+                                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.appendChild(newTimelineItem);
+                timelineModal.classList.add('hidden');
+                timelineTitle.value = '';
+                timelineDescription.value = '';
+            }
+        });
+
+        // Dreams functionality
+        const dreamsContainer = document.querySelector('#futuro .space-y-4:first-of-type');
+        const addDreamBtn = document.getElementById('addDreamBtn');
+        const dreamModal = document.getElementById('dreamModal');
+        const cancelDreamBtn = document.getElementById('cancelDreamBtn');
+        const saveDreamBtn = document.getElementById('saveDreamBtn');
+        const dreamDescription = document.getElementById('dreamDescription');
+
+        addDreamBtn.addEventListener('click', () => {
+            dreamModal.classList.remove('hidden');
+        });
+
+        cancelDreamBtn.addEventListener('click', () => {
+            dreamModal.classList.add('hidden');
+            dreamDescription.value = '';
+        });
+
+        saveDreamBtn.addEventListener('click', () => {
+            if (dreamDescription.value.trim() !== '') {
+                const newDream = document.createElement('div');
+                newDream.className = 'flex items-start';
+                newDream.innerHTML = `
+                    <svg class="w-6 h-6 text-pink-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                    <p class="font-mont text-gray-700">${dreamDescription.value}</p>
+                `;
+                dreamsContainer.appendChild(newDream);
+                dreamModal.classList.add('hidden');
+                dreamDescription.value = '';
+            }
+        });
+
+        // Promises functionality
+        const promisesContainer = document.querySelector('#futuro .space-y-4:last-of-type');
+        const addPromiseBtn = document.getElementById('addPromiseBtn');
+        const promiseModal = document.getElementById('promiseModal');
+        const cancelPromiseBtn = document.getElementById('cancelPromiseBtn');
+        const savePromiseBtn = document.getElementById('savePromiseBtn');
+        const promiseDescription = document.getElementById('promiseDescription');
+
+        addPromiseBtn.addEventListener('click', () => {
+            promiseModal.classList.remove('hidden');
+        });
+
+        cancelPromiseBtn.addEventListener('click', () => {
+            promiseModal.classList.add('hidden');
+            promiseDescription.value = '';
+        });
+
+        savePromiseBtn.addEventListener('click', () => {
+            if (promiseDescription.value.trim() !== '') {
+                const newPromise = document.createElement('div');
+                newPromise.className = 'flex items-start';
+                newPromise.innerHTML = `
+                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <p class="font-mont text-gray-700">${promiseDescription.value}</p>
+                `;
+                promisesContainer.appendChild(newPromise);
+                promiseModal.classList.add('hidden');
+                promiseDescription.value = '';
+            }
+        });
+    </script>
+</body>
